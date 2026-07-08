@@ -1,0 +1,96 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "LongCat: route check",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        ".\\scripts\\run_longcat_local_agent.py",
+        "--route-check",
+        "--task",
+        "${input:longcatTask}",
+        "--json",
+        "--no-report"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "LongCat: readiness check",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        ".\\scripts\\run_longcat_local_agent.py",
+        "--check",
+        "--json"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "LongCat: probe local endpoint",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        ".\\scripts\\run_longcat_local_agent.py",
+        "--check",
+        "--probe-endpoint",
+        "--base-url",
+        "${input:longcatBaseUrl}",
+        "--json"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "LongCat: sync GitHub source",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        ".\\scripts\\run_longcat_local_agent.py",
+        "--sync-github",
+        "--json"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "LongCat: validate pack",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        ".\\scripts\\validate_longcat_local_agent.py"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "test",
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "longcatTask",
+      "type": "promptString",
+      "description": "Task text for LongCat route-check",
+      "default": "LongCat repo-level code review"
+    },
+    {
+      "id": "longcatBaseUrl",
+      "type": "promptString",
+      "description": "OpenAI-compatible LongCat base URL",
+      "default": "http://127.0.0.1:13423"
+    }
+  ]
+}
+

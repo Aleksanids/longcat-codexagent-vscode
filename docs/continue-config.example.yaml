@@ -1,0 +1,30 @@
+name: LongCat Local CodexAgent
+version: 1.0.0
+schema: v1
+
+models:
+  - name: LongCat Local
+    provider: openai
+    model: meituan-longcat/LongCat-2.0-FP8
+    apiBase: http://127.0.0.1:13423/v1
+    apiKey: ${{ secrets.LONGCAT_API_KEY }}
+    roles:
+      - chat
+      - edit
+      - apply
+    capabilities:
+      - tool_use
+    defaultCompletionOptions:
+      contextLength: 1000000
+      maxTokens: 8192
+      temperature: 0.2
+
+context:
+  - provider: code
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+
+rules:
+  - uses: file://.continue/rules/longcat-codexagent.md
+

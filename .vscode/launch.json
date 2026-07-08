@@ -1,0 +1,33 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "LongCat: readiness check",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}\\scripts\\run_longcat_local_agent.py",
+      "args": [
+        "--check",
+        "--json"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "LongCat: route check",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}\\scripts\\run_longcat_local_agent.py",
+      "args": [
+        "--route-check",
+        "--task",
+        "LongCat repo-level code review",
+        "--json",
+        "--no-report"
+      ],
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
+
